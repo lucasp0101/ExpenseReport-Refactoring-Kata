@@ -14,8 +14,9 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(catch2)
 
 # uncomment this line to enable coverage measurements using gcov
-# set(CMAKE_CXX_FLAGS "--coverage")
+set(CMAKE_CXX_FLAGS "--coverage -O0 -g")
 
+include(CTest)
 enable_testing()
 add_subdirectory(src)
 add_subdirectory(test)

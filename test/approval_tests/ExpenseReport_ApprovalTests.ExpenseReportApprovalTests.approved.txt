@@ -1,6 +1,56 @@
-([(type: 0 amount: 12)]) => Expenses Tue Dec 23 19:53:39 2025
+([(type: 0 amount: 12)]) => Expenses 01-01-02 00:00:00
 Breakfast	12	 
 Meal expenses: 12
 Total expenses: 12
+
+([(type: 2 amount: 12)]) => Expenses 01-01-02 00:00:00
+Car Rental	12	 
+Meal expenses: 0
+Total expenses: 12
+
+([(type: 1 amount: 12)]) => Expenses 01-01-02 00:00:00
+Dinner	12	 
+Meal expenses: 12
+Total expenses: 12
+
+([(type: 0 amount: -1)]) => Expenses 01-01-02 00:00:00
+Breakfast	-1	 
+Meal expenses: -1
+Total expenses: -1
+
+([(type: 2 amount: -1)]) => Expenses 01-01-02 00:00:00
+Car Rental	-1	 
+Meal expenses: 0
+Total expenses: -1
+
+([(type: 1 amount: -1)]) => Expenses 01-01-02 00:00:00
+Dinner	-1	 
+Meal expenses: -1
+Total expenses: -1
+
+([(type: 0 amount: 1)(type: 2 amount: 1)]) => Expenses 01-01-02 00:00:00
+Breakfast	1	 
+Car Rental	1	 
+Meal expenses: 1
+Total expenses: 2
+
+([(type: 2 amount: 1)(type: 1 amount: 1)]) => Expenses 01-01-02 00:00:00
+Car Rental	1	 
+Dinner	1	 
+Meal expenses: 1
+Total expenses: 2
+
+([(type: 0 amount: 1)(type: 1 amount: 1)]) => Expenses 01-01-02 00:00:00
+Breakfast	1	 
+Dinner	1	 
+Meal expenses: 2
+Total expenses: 2
+
+([(type: 0 amount: 1)(type: 2 amount: 1)(type: 1 amount: 1)]) => Expenses 01-01-02 00:00:00
+Breakfast	1	 
+Car Rental	1	 
+Dinner	1	 
+Meal expenses: 2
+Total expenses: 3
 
 

@@ -24,7 +24,16 @@ TEST_CASE("ExpenseReportApprovalTests", "VerifyCombinations")
 {
     std::list<std::list<Expense>> expense_combinations =
     {
-        {Expense(Type::BREAKFAST, 12)}
+        {Expense(Type::BREAKFAST, 12)},
+        {Expense(Type::CAR_RENTAL, 12)},
+        {Expense(Type::DINNER, 12)},
+        {Expense(Type::BREAKFAST, -1)},
+        {Expense(Type::CAR_RENTAL, -1)},
+        {Expense(Type::DINNER, -1)},
+        {Expense(Type::BREAKFAST, 1), Expense(Type::CAR_RENTAL, 1)},
+        {Expense(Type::CAR_RENTAL, 1), Expense(Type::DINNER, 1)},
+        {Expense(Type::BREAKFAST, 1), Expense(Type::DINNER, 1)},
+        {Expense(Type::BREAKFAST, 1), Expense(Type::CAR_RENTAL, 1), Expense(Type::DINNER, 1)},
     };
 
     auto f = [](std::list<Expense> expenses) {

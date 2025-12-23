@@ -6,6 +6,14 @@
 
 using namespace std;
 
+// * To break the dependency to time.h's ctime
+string to_return = "01-01-02 00:00:00\n";
+char *ctime(const time_t *__timer)
+{   
+    return &to_return[0];
+}
+
+
 // * In general, I would include the expenses list in a class 
 // * in itself, and encapsulate all the responsabilities of this class
 // * there.
