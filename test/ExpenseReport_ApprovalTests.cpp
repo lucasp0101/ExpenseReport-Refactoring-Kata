@@ -14,19 +14,13 @@ TEST_CASE("ExpenseReportApprovalTests", "VerifyCombinations")
 {
     vector<vector<Expense>> expense_combinations =
     {
-        {},
-        {Expense(type)}
+    };
 
-    }
-
-    auto f = [](std::string name, int sellIn, int quality) {
-        std::vector<Item> items = {Item(name, sellIn, quality)};
-        GildedRose app(items);
-        app.updateQuality();
-        return items[0];
+    auto f = [](vector<Expense> expenses) {
+        return printReport(expenses);
     };
 
     ApprovalTests::CombinationApprovals::verifyAllCombinations(
             f,
-            names, sellIns, qualities);
+            expense_combinations);
 }

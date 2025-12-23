@@ -12,7 +12,9 @@ using namespace std;
 // ! This method has too many responsabilities: 
 // ! calculate the final ammout for all expenses, time-stamp it
 // ! and print it to stdout
-void printReport(list<Expense> expenses)
+
+// ! I'm not sure a list is the best data structure to use here
+void printReport(list<Expense> expenses) 
 {
     int total = 0;
     int mealExpenses = 0;
@@ -54,4 +56,7 @@ void printReport(list<Expense> expenses)
     // ! Magic string in code
     cout << "Meal expenses: " << mealExpenses << '\n';
     cout << "Total expenses: " << total << '\n';
+
+    // ! The fact that the code writes to stdout will make it hard to debug
+    // ! To change this, you can append everything to a string and then return it.
 }
