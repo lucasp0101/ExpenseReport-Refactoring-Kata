@@ -17,7 +17,6 @@ char *ctime(const time_t *__timer)
 // * In general, I would include the expenses list in a class 
 // * in itself, and encapsulate all the responsabilities of this class
 // * there.
-
 // ! This method has too many responsabilities: 
 // ! calculate the final ammout for all expenses, time-stamp it
 // ! and print it to stdout
@@ -31,17 +30,18 @@ void printReport(list<Expense> expenses)
     auto now = chrono::system_clock::to_time_t(chrono::system_clock::now());
     cout << "Expenses " << ctime(&now);
 
-    // ! Why would you use iterators for this simple for loop
     for (list<Expense>::iterator expense = expenses.begin(); expense != expenses.end(); ++expense) {
-        // ! The content of this for loop could be extracted to a function
-        if (expense->type == BREAKFAST || expense->type == DINNER) {
+        if (expense->type == BREAKFAST)
+        {
+            mealExpenses += expense->amount;
+        }
+        else if (expense->type == DINNER)
+        {
             mealExpenses += expense->amount;
         }
 
-        // ! Switch statement could be split into different classes that inherit from Expense
         string expenseName = "";
         switch (expense->type) {
-        // ! Magic strings in code
         case DINNER:
             expenseName = "Dinner";
             break;
@@ -53,16 +53,26 @@ void printReport(list<Expense> expenses)
             break;
         }
 
-        // ! Magic numbers and strings in the code
-        // ! Too long of an if method
-        string mealOverExpensesMarker = (expense->type == DINNER && expense->amount > 5000) || (expense->type == BREAKFAST && expense->amount > 1000) ? "X" : " ";
+        string mealOverExpensesMarker; // = (expense->type == DINNER && expense->amount > 5000) || (expense->type == BREAKFAST && expense->amount > 1000) ? "X" : " ";
+
+        if (expense->type == DINNER && expense->amount > 5000)
+        {
+            mealOverExpensesMarker = "X";   
+        }
+        else if (expense->type == BREAKFAST && expense->amount > 1000)
+        {
+            mealOverExpensesMarker = "X";
+        }
+        else
+        {
+            mealOverExpensesMarker = " ";
+        }
 
         cout << expenseName << '\t' << expense->amount << '\t' << mealOverExpensesMarker << '\n';
 
         total += expense->amount;
     }
 
-    // ! Magic string in code
     cout << "Meal expenses: " << mealExpenses << '\n';
     cout << "Total expenses: " << total << '\n';
 }
@@ -79,3 +89,10 @@ string printReportWrapper(list<Expense> expenses)
 
     return stream.str();
 }
+
+// ! Magic string in code
+// ! Magic numbers in the code
+// ! Too long of an if method
+// ! Switch statement could be split into different classes that inherit from Expense
+// ! The content of this for loop could be extracted to a function
+// ! Why would you use iterators for this simple for loop
