@@ -15,6 +15,7 @@ class Expense
     public:
     Type type;
     int amount;
+    // ! No constructors for the class
 };
 
 extern void printReport(list<Expense> expenses);
