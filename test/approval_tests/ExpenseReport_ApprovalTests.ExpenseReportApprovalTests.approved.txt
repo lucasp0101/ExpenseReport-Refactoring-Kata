@@ -1,0 +1,6 @@
+([(type: 0 amount: 12)]) => Expenses Tue Dec 23 19:53:39 2025
+Breakfast	12	 
+Meal expenses: 12
+Total expenses: 12
+
+

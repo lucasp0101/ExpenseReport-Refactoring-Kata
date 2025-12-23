@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iterator>
 #include "ExpenseReport.h"
+#include <sstream>
 
 using namespace std;
 
@@ -56,7 +57,17 @@ void printReport(list<Expense> expenses)
     // ! Magic string in code
     cout << "Meal expenses: " << mealExpenses << '\n';
     cout << "Total expenses: " << total << '\n';
+}
 
-    // ! The fact that the code writes to stdout will make it hard to debug
-    // ! To change this, you can append everything to a string and then return it.
+// * Capture the output that would go to cout and return it as a string
+string printReportWrapper(list<Expense> expenses)
+{
+    std::stringstream stream;
+    auto * old = std::cout.rdbuf(stream.rdbuf());
+    
+    printReport(expenses);
+
+    std::cout.rdbuf(old);
+
+    return stream.str();
 }
