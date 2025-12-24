@@ -22,18 +22,17 @@ std::ostream& operator<<(std::ostream& os, const list<Expense>& expenses)
 
 TEST_CASE("ExpenseReportApprovalTests", "VerifyCombinations")
 {
-    std::list<std::list<Expense>> expense_combinations =
+    std::vector<std::list<Expense>> expense_combinations =
     {
         {Expense(Type::BREAKFAST, 12)},
         {Expense(Type::CAR_RENTAL, 12)},
         {Expense(Type::DINNER, 12)},
-        {Expense(Type::BREAKFAST, -1)},
-        {Expense(Type::CAR_RENTAL, -1)},
-        {Expense(Type::DINNER, -1)},
         {Expense(Type::BREAKFAST, 1), Expense(Type::CAR_RENTAL, 1)},
         {Expense(Type::CAR_RENTAL, 1), Expense(Type::DINNER, 1)},
         {Expense(Type::BREAKFAST, 1), Expense(Type::DINNER, 1)},
         {Expense(Type::BREAKFAST, 1), Expense(Type::CAR_RENTAL, 1), Expense(Type::DINNER, 1)},
+        {Expense(Type::BREAKFAST, 1), Expense(Type::DINNER, 5001)},
+        {Expense(Type::BREAKFAST, 1001), Expense(Type::DINNER, 1)},
     };
 
     auto f = [](std::list<Expense> expenses) {

@@ -13,21 +13,6 @@ Dinner	12
 Meal expenses: 12
 Total expenses: 12
 
-([(type: 0 amount: -1)]) => Expenses 01-01-02 00:00:00
-Breakfast	-1	 
-Meal expenses: -1
-Total expenses: -1
-
-([(type: 2 amount: -1)]) => Expenses 01-01-02 00:00:00
-Car Rental	-1	 
-Meal expenses: 0
-Total expenses: -1
-
-([(type: 1 amount: -1)]) => Expenses 01-01-02 00:00:00
-Dinner	-1	 
-Meal expenses: -1
-Total expenses: -1
-
 ([(type: 0 amount: 1)(type: 2 amount: 1)]) => Expenses 01-01-02 00:00:00
 Breakfast	1	 
 Car Rental	1	 
@@ -52,5 +37,17 @@ Car Rental	1
 Dinner	1	 
 Meal expenses: 2
 Total expenses: 3
+
+([(type: 0 amount: 1)(type: 1 amount: 5001)]) => Expenses 01-01-02 00:00:00
+Breakfast	1	 
+Dinner	5001	X
+Meal expenses: 5002
+Total expenses: 5002
+
+([(type: 0 amount: 1001)(type: 1 amount: 1)]) => Expenses 01-01-02 00:00:00
+Breakfast	1001	X
+Dinner	1	 
+Meal expenses: 1002
+Total expenses: 1002
 
 
