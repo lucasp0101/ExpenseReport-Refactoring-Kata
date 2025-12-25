@@ -3,8 +3,30 @@
 #include <iterator>
 #include "ExpenseReport.h"
 #include <sstream>
+#include "time.h"
 
 using namespace std;
+
+string obtainExpenseName(std::__cxx11::list<Expense>::iterator &expense)
+{
+    string expenseName = "";
+
+    switch (expense->type)
+    {
+    case DINNER:
+        expenseName = "Dinner";
+        break;
+    case BREAKFAST:
+        expenseName = "Breakfast";
+        break;
+    case CAR_RENTAL:
+        expenseName = "Car Rental";
+        break;
+    }
+    // ! No default case
+
+    return expenseName;
+}
 
 // * To break the dependency to time.h's ctime
 string to_return = "01-01-02 00:00:00\n";
@@ -13,6 +35,48 @@ char *ctime(const time_t *__timer)
     return &to_return[0];
 }
 
+int processExpense(std::__cxx11::list<Expense>::iterator &expense, int &mealExpenses)
+{
+    string mealOverExpensesMarker;
+
+    switch (expense->type)
+    {
+    case DINNER:
+        mealExpenses += expense->amount;
+
+        if (expense->amount > 5000)
+        {
+            mealOverExpensesMarker = "X";
+        }
+        else 
+        {
+            mealOverExpensesMarker = " ";
+        }
+        
+        break;
+    case BREAKFAST:
+        mealExpenses += expense->amount;
+
+        if (expense->amount > 1000)
+        {
+            mealOverExpensesMarker = "X";
+        }
+        else 
+        {
+            mealOverExpensesMarker = " ";
+        }
+        break;
+    case CAR_RENTAL:
+        mealOverExpensesMarker = " ";
+        break;
+    }
+
+    string expenseName = obtainExpenseName(expense);
+    
+    cout << expenseName << '\t' << expense->amount << '\t' << mealOverExpensesMarker << '\n';
+
+    return expense->amount;
+}
 
 // * In general, I would include the expenses list in a class 
 // * in itself, and encapsulate all the responsabilities of this class
@@ -31,46 +95,7 @@ void printReport(list<Expense> expenses)
     cout << "Expenses " << ctime(&now);
 
     for (list<Expense>::iterator expense = expenses.begin(); expense != expenses.end(); ++expense) {
-        if (expense->type == BREAKFAST)
-        {
-            mealExpenses += expense->amount;
-        }
-        else if (expense->type == DINNER)
-        {
-            mealExpenses += expense->amount;
-        }
-
-        string expenseName = "";
-        switch (expense->type) {
-        case DINNER:
-            expenseName = "Dinner";
-            break;
-        case BREAKFAST:
-            expenseName = "Breakfast";
-            break;
-        case CAR_RENTAL:
-            expenseName = "Car Rental";
-            break;
-        }
-
-        string mealOverExpensesMarker; // = (expense->type == DINNER && expense->amount > 5000) || (expense->type == BREAKFAST && expense->amount > 1000) ? "X" : " ";
-
-        if (expense->type == DINNER && expense->amount > 5000)
-        {
-            mealOverExpensesMarker = "X";   
-        }
-        else if (expense->type == BREAKFAST && expense->amount > 1000)
-        {
-            mealOverExpensesMarker = "X";
-        }
-        else
-        {
-            mealOverExpensesMarker = " ";
-        }
-
-        cout << expenseName << '\t' << expense->amount << '\t' << mealOverExpensesMarker << '\n';
-
-        total += expense->amount;
+        total += processExpense(expense, mealExpenses);
     }
 
     cout << "Meal expenses: " << mealExpenses << '\n';
