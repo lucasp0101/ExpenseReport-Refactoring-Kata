@@ -3,10 +3,29 @@
 #include <iterator>
 #include "ExpenseReport.h"
 #include <sstream>
-#include "time.h"
 #include <stdexcept>
 
 using namespace std;
+
+bool expenseIsMeal(Expense &expense)
+{
+    // ! This makes it difficult to add new types
+    // ! Only here to decompose the original function into its different logic containers
+    switch (expense.type)
+    {
+    case BREAKFAST:
+        return true;
+
+    case DINNER:
+        return true;
+
+    case CAR_RENTAL:
+        return false;
+
+    default:
+        return false;
+    }
+}
 
 string obtainMealOverExpensesMarker(Expense &expense)
 {
@@ -63,16 +82,9 @@ int processExpense(Expense &expense, int &mealExpenses)
 {
     string mealOverExpensesMarker = obtainMealOverExpensesMarker(expense);
 
-    switch (expense.type)
+    if (expenseIsMeal(expense))
     {
-    case DINNER:
         mealExpenses += expense.amount;
-        break;
-    case BREAKFAST:
-        mealExpenses += expense.amount;
-        break;
-    case CAR_RENTAL:
-        break;
     }
 
     string expenseName = obtainExpenseName(expense);
