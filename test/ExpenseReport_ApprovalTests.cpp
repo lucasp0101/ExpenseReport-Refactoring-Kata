@@ -13,7 +13,7 @@ std::ostream& operator<<(std::ostream& os, const list<Expense>& expenses)
     os << "[";
     for (Expense expense : expenses)
     {
-        os << "(type: " << expense.type << " amount: " << expense.amount << ")";
+        os << "(type: " << expense.getType() << " amount: " << expense.getAmount() << ")";
     }
     os << "]";
     
