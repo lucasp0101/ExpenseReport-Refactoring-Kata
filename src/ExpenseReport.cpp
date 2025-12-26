@@ -7,11 +7,11 @@
 
 using namespace std;
 
-string obtainExpenseName(std::__cxx11::list<Expense>::iterator &expense)
+string obtainExpenseName(Expense &expense)
 {
     string expenseName = "";
 
-    switch (expense->type)
+    switch (expense.type)
     {
     case DINNER:
         expenseName = "Dinner";
@@ -35,16 +35,16 @@ char *ctime(const time_t *__timer)
     return &to_return[0];
 }
 
-int processExpense(std::__cxx11::list<Expense>::iterator &expense, int &mealExpenses)
+int processExpense(Expense &expense, int &mealExpenses)
 {
     string mealOverExpensesMarker;
 
-    switch (expense->type)
+    switch (expense.type)
     {
     case DINNER:
-        mealExpenses += expense->amount;
+        mealExpenses += expense.amount;
 
-        if (expense->amount > 5000)
+        if (expense.amount > 5000)
         {
             mealOverExpensesMarker = "X";
         }
@@ -55,9 +55,9 @@ int processExpense(std::__cxx11::list<Expense>::iterator &expense, int &mealExpe
         
         break;
     case BREAKFAST:
-        mealExpenses += expense->amount;
+        mealExpenses += expense.amount;
 
-        if (expense->amount > 1000)
+        if (expense.amount > 1000)
         {
             mealOverExpensesMarker = "X";
         }
@@ -73,9 +73,9 @@ int processExpense(std::__cxx11::list<Expense>::iterator &expense, int &mealExpe
 
     string expenseName = obtainExpenseName(expense);
     
-    cout << expenseName << '\t' << expense->amount << '\t' << mealOverExpensesMarker << '\n';
+    cout << expenseName << '\t' << expense.amount << '\t' << mealOverExpensesMarker << '\n';
 
-    return expense->amount;
+    return expense.amount;
 }
 
 // * In general, I would include the expenses list in a class 
@@ -94,7 +94,7 @@ void printReport(list<Expense> expenses)
     auto now = chrono::system_clock::to_time_t(chrono::system_clock::now());
     cout << "Expenses " << ctime(&now);
 
-    for (list<Expense>::iterator expense = expenses.begin(); expense != expenses.end(); ++expense) {
+    for (Expense &expense : expenses) {
         total += processExpense(expense, mealExpenses);
     }
 
