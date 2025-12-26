@@ -4,8 +4,32 @@
 #include "ExpenseReport.h"
 #include <sstream>
 #include "time.h"
+#include <stdexcept>
 
 using namespace std;
+
+string obtainMealOverExpensesMarker(Expense &expense)
+{
+    switch (expense.type)
+    {
+    case DINNER:
+        if (expense.amount > 5000)
+        {
+            return "X";
+        }
+        return " ";
+    case BREAKFAST:
+        if (expense.amount > 1000)
+        {
+            return "X";
+        }
+        return " ";
+    case CAR_RENTAL:
+        return " ";
+    default:
+        throw invalid_argument("Type of expense reference is not valid: " + to_string(expense.type));
+    }
+}
 
 string obtainExpenseName(Expense &expense)
 {
@@ -37,37 +61,17 @@ char *ctime(const time_t *__timer)
 
 int processExpense(Expense &expense, int &mealExpenses)
 {
-    string mealOverExpensesMarker;
+    string mealOverExpensesMarker = obtainMealOverExpensesMarker(expense);
 
     switch (expense.type)
     {
     case DINNER:
         mealExpenses += expense.amount;
-
-        if (expense.amount > 5000)
-        {
-            mealOverExpensesMarker = "X";
-        }
-        else 
-        {
-            mealOverExpensesMarker = " ";
-        }
-        
         break;
     case BREAKFAST:
         mealExpenses += expense.amount;
-
-        if (expense.amount > 1000)
-        {
-            mealOverExpensesMarker = "X";
-        }
-        else 
-        {
-            mealOverExpensesMarker = " ";
-        }
         break;
     case CAR_RENTAL:
-        mealOverExpensesMarker = " ";
         break;
     }
 
