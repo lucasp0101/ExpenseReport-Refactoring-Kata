@@ -2,11 +2,35 @@
 
 #include <string>
 #include <iostream>
+#include <map>
+
+namespace mealThresholdMarkers
+{
+    const std::string MEAL_UNDER_THRESHOLD_MARKER = " ";
+    const std::string MEAL_OVER_THRESHOLD_MARKER = "X";
+}
 
 enum Type
 {
     BREAKFAST, DINNER, CAR_RENTAL
 };
+
+struct ExpenseTypeDetails 
+{
+    Type type;
+    std::string name;
+    bool isMeal;
+    int mealOverLimitThreshold;
+};
+
+// ! This could be read from a file to further ease the process of adding new expenses
+const std::map<Type, ExpenseTypeDetails> availableExpenseTypes = 
+{
+    {Type::BREAKFAST, {BREAKFAST, "Breakfast", true, 1000}},
+    {Type::DINNER, {DINNER, "Dinner", true, 5000}},
+    {Type::CAR_RENTAL, {CAR_RENTAL, "Car Rental", false, 0}}
+};
+
 
 class Expense
 {

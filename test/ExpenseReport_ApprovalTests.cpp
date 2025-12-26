@@ -8,12 +8,12 @@ auto directoryDisposer =
     ApprovalTests::Approvals::useApprovalsSubdirectory("approval_tests");
 
 
-std::ostream& operator<<(std::ostream& os, const list<Expense>& expenses)
+std::ostream& operator<<(std::ostream& os, const std::list<Expense>& expenses)
 {
     os << "[";
     for (Expense expense : expenses)
     {
-        os << "(type: " << expense.getType() << " amount: " << expense.getAmount() << ")";
+        os << "(type: " << std::to_string(expense.getType()) << " amount: " << std::to_string(expense.getAmount()) << ")";
     }
     os << "]";
     

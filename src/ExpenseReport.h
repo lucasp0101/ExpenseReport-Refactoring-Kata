@@ -2,10 +2,11 @@
 
 #include <list>
 #include <iostream>
+#include <string_view>
 
 #include "Expense.h"
 
-using namespace std;
+#define STR_TEMPLATE_FOR_EXPENSE_LIST "Expenses {}{}Meal expenses: {}\nTotal expenses: {}\n"
 
-extern void printReport(list<Expense> expenses);
-extern string printReportWrapper(list<Expense> expenses);
+extern void printReport(std::list<Expense> expenses);
+extern std::string printReportWrapper(std::list<Expense> expenses);

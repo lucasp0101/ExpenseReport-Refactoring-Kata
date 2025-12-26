@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.23)
 
 project(ExpenseReport)
-
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 include(FetchContent)
