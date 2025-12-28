@@ -12,7 +12,7 @@ namespace mealThresholdMarkers
 
 enum Type
 {
-    BREAKFAST, DINNER, CAR_RENTAL
+    BREAKFAST, DINNER, CAR_RENTAL, LUNCH
 };
 
 struct ExpenseTypeDetails 
@@ -24,11 +24,15 @@ struct ExpenseTypeDetails
 };
 
 // ! This could be read from a file to further ease the process of adding new expenses
+// ! But it is trivial so I wont do it
+// TODO First create the unit tests to for the new feature, then add it.
+// TODO --> Add Lunch with an expense limit of 2000.
 const std::map<Type, ExpenseTypeDetails> availableExpenseTypes = 
 {
     {Type::BREAKFAST, {BREAKFAST, "Breakfast", true, 1000}},
     {Type::DINNER, {DINNER, "Dinner", true, 5000}},
-    {Type::CAR_RENTAL, {CAR_RENTAL, "Car Rental", false, 0}}
+    {Type::CAR_RENTAL, {CAR_RENTAL, "Car Rental", false, 0}},
+    {Type::LUNCH, {LUNCH, "Lunch", true, 2000}}
 };
 
 

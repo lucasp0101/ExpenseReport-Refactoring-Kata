@@ -4,6 +4,7 @@
 #include <format>
 
 // * To break the dependency to time.h's ctime
+// * Necessary for the approval tests
 std::string to_return = "01-01-02 00:00:00\n";
 char *ctime(const time_t *__timer)
 {   
@@ -41,6 +42,7 @@ void printReport(std::list<Expense> expenses)
 }
 
 // * Capture the output that would go to cout and return it as a string
+// * Necessary to run the approval tests
 std::string printReportWrapper(std::list<Expense> expenses)
 {
     std::stringstream stream;
